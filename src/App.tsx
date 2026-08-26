@@ -14,7 +14,7 @@ function App() {
   const handleLogout = () => {
     sessionStorage.clear();
     setIsLogged(false);
-    window.location.href = "/"; 
+    window.location.href = "/HCG/";
   }
 
   return (

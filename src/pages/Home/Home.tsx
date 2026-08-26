@@ -181,7 +181,7 @@ const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
         nome="Beatriz Cavalcanti"
         cargo="Gerente de Projetos"
         conteudo={`Design is not just what it looks and feels like. Design is how it work.`}
-        profilePhoto="/users_photo_cover/Beatriz Cavalcanti.jpeg"
+        profilePhoto="users_photo_cover/Beatriz Cavalcanti.jpeg"
         image="https://dheegital.com/wp-content/uploads/2019/03/post-os-8-tipos-de-design-grafico.jpg"
       />
     </article>
