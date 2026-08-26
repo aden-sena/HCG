@@ -1,0 +1,30 @@
+{
+    "users": [
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6IlVzdcOhcmlvIDEiLCJpYXQiOjE3NTE1Mjk2MDB9.1bJbQZ3tG5y_example_sig_user1",
+            "matricula": "0001",
+            "nome": "Carlos Silva",
+            "email": "carlos.silva@example.com",
+            "senha": "1234",
+            "foto": "/users_photo_cover/Carlos Silva.jpeg",
+            "cargo": "Analista de Suporte",
+            "setor": "Tecnologia da Informação",
+            "pontuacao": 450,
+            "xp": 150,
+            "tipo": "user"
+        },
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwibmFtZSI6IlVzdcOhcmlvIDIiLCJpYXQiOjE3NTE1Mjk2MDB9.8kLmNo5pQ2x_example_sig_user2",
+            "matricula": "0002",
+            "nome": "Beatriz Cavalvanti",
+            "email": "beatriz.cavalvanti@example.com",
+            "senha": "1234",
+            "foto": "/users_photo_cover/Beatriz Cavalcanti.jpeg",
+            "cargo": "Gerente de Projetos",
+            "setor": "Recursos Humanos",
+            "pontuacao": 1200,
+            "xp": 200,
+            "tipo": "admin"
+        }
+    ]
+}

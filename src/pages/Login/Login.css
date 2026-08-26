@@ -1,0 +1,258 @@
+:root {
+  --border-radius-box: 15px;
+  --login-view-height: 91vh;
+}
+
+#login {
+  height: var(--login-view-height);
+  width: 95vw;
+  margin: 2% auto;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: var(--border-radius-box);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+#login-box {
+  width: 70vw;
+  height: var(--login-view-height);
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-box > label,
+#password-box > label {
+  font-weight: bold;
+}
+
+#login-box > h1 {
+  margin-top: 2rem;
+}
+
+#login-box > h2 {
+  color: gray;
+  font-size: 10pt;
+}
+
+#user-box {
+  margin: 2rem 0 1rem 0;
+}
+
+aside {
+  width: 30vw;
+  height: var(--login-view-height);
+
+  border-radius: var(--border-radius-box) 0 0 var(--border-radius-box);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #001147;
+  background: radial-gradient(circle, rgba(0, 17, 71, 1) 49%, rgba(0, 30, 118, 1) 91%);
+}
+
+aside > h1 {
+  margin-top: 1rem;
+  font-size: 60pt;
+  color: white;
+}
+
+aside > h2 {
+  font-size: 7.5pt;
+  color: lightgray;
+}
+
+aside > h3 {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+
+  color: white;
+}
+
+aside > h3 > span {
+  color: rgb(0, 102, 255);
+}
+
+aside > p {
+  padding: 1rem 2rem;
+  font-size: 10pt;
+  color: lightgray;
+}
+
+#protegido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30% 2rem 0 2rem;
+}
+
+#protegido > span {
+  color: lightgray;
+  font-size: 10pt;
+}
+
+/* Contêiner que agrupa o ícone e o input */
+.input-group {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* Ajuste do ícone dentro do grupo de input */
+.icon-input {
+  margin-right: 10px;
+  height: 30px; /* Ajuste o tamanho do ícone conforme necessário */
+  width: 30px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+/* Remove a borda padrão do input para assumir a do contêiner */
+.input-group input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+#user {
+  width: 250px;
+}
+
+#password {
+  width: 220px;
+}
+
+#eye {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#lembrar-esqueci {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 1.5rem 0;
+  width: 300px;
+
+  font-size: 10pt;
+}
+
+a {
+  text-decoration: none;
+}
+
+#lembrar-box {
+  display: flex;
+  gap: 8px;
+}
+
+#lembrarBox > input{
+  width: 15px;
+}
+
+#entrar {
+  display: flex;
+  justify-content: space-between;
+
+  width: 310px;
+  padding: .5rem 1rem .5rem 7.5rem;
+  font-size: 12pt;
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: white;
+  background: #0239C2;
+  background: linear-gradient(90deg, rgba(2, 57, 194, 1) 0%, rgba(0, 30, 118, 1) 90%);
+}
+
+.container-ou {
+  position: relative;
+  text-align: center;
+  margin: 1rem 0 0 0;
+  width: 300px; /* Garante que ocupe a largura disponível */
+}
+
+/* Este bloco cria a linha preenchendo o fundo */
+.container-ou::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ccc; /* Cor da linha */
+  z-index: 1;
+}
+
+/* Este bloco protege o texto e esconde a linha atrás dele */
+.texto-ou {
+  position: relative;
+  z-index: 2;
+  background-color: #fff; /* OBRIGATÓRIO: Mude para a cor exata do fundo da sua página */
+  padding: 0 15px; /* Espaço para afastar a linha do texto */
+  color: #666; /* Cor do texto */
+  font-family: sans-serif;
+}
+
+
+#outro-entrar {
+  display: flex;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+#outro-entrar > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  background-color: white;
+
+  cursor: pointer;
+}
+
+#outro-entrar > button > img {
+  width: 60%;
+  height: 60%;
+  object-fit: cover;
+}
+
+#ajuda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 1.5rem;
+}
+
+
+@media (max-width: 1000px) {
+  #login {
+    margin-top: 2rem;
+  }
+
+  aside {
+    display: none;
+  }
+
+  #login-box {
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+}

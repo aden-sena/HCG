@@ -1,0 +1,321 @@
+#home {
+    margin: 1rem 20vw;
+}
+
+#greetings > span {
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+#bom-trabalho{
+    background-image: url("../../../public/welcome.png");
+    background-repeat: no-repeat;
+    background-size: 58vw 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58vw;
+    height: 45vh;
+
+    font-size: 30pt;
+    font-weight: 600;
+    color: white;
+
+    margin-top: 1rem;;
+}
+
+#comunicados, #ranking {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 25vw;
+    margin-top: 2rem;
+    z-index: 0;
+
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: white;
+}
+
+#comunicados > span, #ranking > span {
+    font-size: 13pt;
+    font-weight: 600;
+    padding: .5rem 0 0 1rem;
+}
+
+#comunicados > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+#line {
+    content: '';
+    height: 120px;
+    width: 1.5px;
+    background-color: lightgray;
+    pointer-events: none;
+}
+
+#pendentes, #lidos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+    width: 12.5vw;
+}
+
+.comunicados-num {
+    font-size: 18pt;
+}
+
+#ranking > div {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+}
+
+#ranking > div > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+}
+
+#agenda {
+    width: 28.5vw;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+#comms-ranking-agenda-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.custom-calendar-container .react-calendar {
+  background-color: white;
+  border-radius: 10px 10px 0 0;
+  border: none;
+}
+
+/* Alvo em todos os botões de dias */
+.custom-calendar-container .react-calendar__tile {
+  height: 45px;
+  max-width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.custom-calendar-container .react-calendar__tile--active {
+  background: #0139C2;
+  color: white;
+}
+
+/* Efeito ao passar o mouse (Hover) */
+.custom-calendar-container .react-calendar__tile:enabled:hover {
+  background-color: lightgray; /* Fundo cinza claro */
+  cursor: pointer;
+}
+
+/* O texto do Mês e Ano (Botão central) */
+.custom-calendar-container .react-calendar__navigation__label {
+    background-color: transparent;
+    border: none;
+    text-transform: capitalize;
+    padding: 1rem;
+  
+}
+
+/* Os botões de setas (voltar e avançar) */
+.custom-calendar-container .react-calendar__navigation__arrow {   
+    position: absolute;
+    top: .9rem;
+    width: 25px;
+    height: 25px;
+
+    /* Zera espaçamentos que causam o desalinhamento */
+    padding-bottom: .5rem;
+    line-height: 0 !important;
+
+    background-color: lightgray;
+    border: none;
+    font-size: 20pt;
+}
+
+/* Empurra o botão de voltar para o extremo esquerdo */
+.react-calendar__navigation__prev-button {
+    right: 3.5rem;
+}
+
+/* Empurra o botão de avançar para o extremo direito */
+.react-calendar__navigation__next-button {
+    right: 1rem;
+}
+
+/* Força a linha dos dias da semana a se comportar como um container flexível perfeito */
+.react-calendar__month-view__weekdays {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Garante que cada dia da semana ocupe exatamente 1/7 avos da largura total (idêntico aos dias) */
+.react-calendar__month-view__weekdays__weekday {
+  flex-basis: calc(100% / 7) !important;
+  max-width: calc(100% / 7) !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Corrige o texto interno caso ele use a tag <abbr> (que vem por padrão com sublinhado ou margens) */
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+  cursor: default !important;
+}
+
+/* Seleciona apenas as datas que pertencem aos meses vizinhos */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #a0a0a0 !important; /* Cor cinza para o texto */
+  opacity: 0.6; /* Deixa ligeiramente transparente (opcional) */
+}
+
+/* Opcional: Altera a cor de fundo ao passar o mouse nesses dias vizinhos */
+.react-calendar__month-view__days__day--neighboringMonth:hover {
+  background-color: #f0f0f0 !important;
+}
+
+/* Seleciona o dia atual (hoje) */
+.react-calendar__tile--now {
+  background: transparent !important; /* Remove o fundo padrão de "hoje" se preferir */
+  border: 2px solid #0139C2 !important; /* Adiciona a borda */
+  border-radius: 8px !important; /* Mantém o arredondamento alinhado com o seu design */
+  box-sizing: border-box !important; /* Garante que a borda não empurre o número para fora */
+}
+
+/* Garante que se o usuário clicar em "hoje", ele ainda mostre o estado de selecionado */
+.react-calendar__tile--active.react-calendar__tile--now {
+  background-color: #0139C2 !important; /* Cor de fundo quando selecionado */
+  color: white !important; /* Cor do texto quando selecionado */
+}
+
+#eventos {
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 2rem;
+}
+
+#eventos > h3 {
+    padding: 1rem 0 0 1rem;
+    font-size: 13pt;
+}
+
+#eventos > ul {
+    padding: 0 .5rem .5rem .5rem;
+    list-style: none;
+}
+
+#eventos > ul > li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 12pt;
+}
+
+#add-evento {
+    background-color: #0139C2;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 1.5rem;
+}
+
+#make-post {
+    width: 98.5%;
+    margin-top: 2rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#make-post > textarea{
+    width: 96%;
+    margin: 1rem 1rem 0 1rem;
+    padding: .5rem;
+    border: none;
+    resize: none;
+}
+
+#make-post > textarea:focus {
+    outline: none;
+}
+
+#post-types {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+#post-types > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    border: none;
+    background-color: transparent;
+}
+
+
+@media (max-width: 1200px) {
+    #home {
+        margin: 1rem 4vw;
+    }
+
+    #bom-trabalho{
+        width: 96vw;
+        height: 20vh;
+        background-size: 91vw 20vh;
+    }
+
+    #comunicados, #ranking {
+        width: 60vw;
+    }
+
+    #agenda {
+        width: 91vw;
+    }
+
+    #comms-ranking-agenda-box {
+        grid-template-columns: 1fr;
+    }
+
+    #make-post {
+        width: 91vw;
+    }
+
+    #make-post > button {
+        font-size: 10pt;
+    }
+
+    #post-types {
+        padding: .5rem;
+    }
+
+    #comunicados, #ranking {
+        width: 91vw;
+        margin-top: 2rem;
+    }
+
+    #pendentes, #lidos {
+        width: 40vw;
+    }
+}

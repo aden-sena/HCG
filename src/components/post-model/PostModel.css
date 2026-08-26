@@ -1,0 +1,94 @@
+#post-box {
+    background-color: white;
+    margin-top: 2rem;
+    border-radius: 10px;
+    width: 98.5%;
+    position: relative;
+}
+
+#post-box > header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 10px;
+}
+
+#post-box > header > img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+#post-box > header > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#post-box > header > svg {
+    position: absolute;
+    right: 1.5rem;
+    cursor: pointer;
+}
+
+#post-box > article {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+#post-box > footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin: 0 2rem;
+}
+
+#post-box > footer > div {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+#comentarios {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+#comentarios > img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+#textarea-comentario{
+    width: 100%;
+    margin: 1rem 1rem 0 1rem;
+    padding: .5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    resize: none;
+}
+
+#textarea-comentario:focus {
+    outline: none;
+}
+
+
+@media (max-width: 1200px) {
+    #post-box {
+        width: 91vw;
+    }
+
+    #post-box > header {
+        padding: 1rem 1rem .2rem 1rem;
+    }
+
+    #post-box > footer {
+        padding: 0;
+        margin: 0 .5rem;
+    }
+
+    #post-box > footer > div > span {
+        font-size: 10pt;
+    }
+}

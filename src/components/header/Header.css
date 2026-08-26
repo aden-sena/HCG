@@ -1,0 +1,120 @@
+#header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0139C2;
+    width: 100vw;
+    height: 15vh;
+    z-index: 98;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    background-color: none;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+#user-photo-dropdown {
+    width: 35px;
+    border-radius: 50%;
+}
+
+#level {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 0.5rem;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 12px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar::-webkit-progress-value {
+    background-color: #0139C2;
+}
+
+#progress-bar::-webkit-progress-bar {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.dropdown-item:hover {
+  background-color: lightgray !important;
+}
+
+#user-photo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+#user-info {
+    text-align: right;
+    color: white;
+}
+
+#cargo {
+    color:rgba(255, 255, 255, 0.7);
+}
+
+#sino {
+    position: absolute;
+    right: 18rem;
+}
+
+#logo-cover {
+    width: 150px;
+    height: 90px;
+}
+
+#logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#dropdownUserInfo {
+    position: absolute;
+    right: 2rem;
+}
+
+
+@media (max-width: 1200px) {
+    #header {
+        height: 10vh;
+    }
+
+    #logo-cover {
+        height: 65px;
+    }
+
+    #user-photo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #sino {
+        right: 7rem;
+    }
+
+    #dropdownUserInfo {
+        right: 1rem;
+    }
+
+    #user-info {
+        display: none;
+    }
+}
