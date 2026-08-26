@@ -89,7 +89,7 @@ function Header({ onLogout }: any) {
             </div>
 
             <div id="logo-cover">
-                <img id="logo" src="/hcg-sf.png" alt="Logo" />
+                <img id="logo" src="hcg-sf.png" alt="Logo" />
             </div>
       </header>
     )
