@@ -75,4 +75,20 @@
         left: -80vw;
         top: 10vh;
     }
+
+    #menu-icon {
+        top: 2rem;
+    }
+}
+
+@media (max-height: 800px) and (max-width: 800px) {
+    #menu-icon {
+        top: .9rem;
+    }
+}
+
+@media (max-height: 700px) and (max-width: 1200px) {
+    #menu-icon {
+        top: 1rem;
+    }
 }
