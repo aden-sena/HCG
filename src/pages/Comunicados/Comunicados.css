@@ -1,3 +1,11 @@
 #content {
-    padding-left: var(--home-header-padding);
+    margin: 1rem 20vw;
+}
+
+
+
+@media (max-width: 1200px) {
+    #content {
+        margin: 1rem 4vw;
+    }
 }

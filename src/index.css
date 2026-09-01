@@ -5,10 +5,6 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-:root {
-  --home-header-padding: 21%;
-}
-
 #body {
   background-color: #DEEEFE;
 }
