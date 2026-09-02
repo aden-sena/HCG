@@ -25,7 +25,8 @@ function Comunicados() {
   // Guarda o ID da linha que está aberta. Se for null, todas estão fechadas.
   const [abertoId, setAbertoId] = useState(null);
 
-  const [comunicadoStatus, setComunicadoStatus] = useState(comunicados.map(item => item.status));
+  // Guarda o status de cada comunicado. Inicialmente, todos são "Pendente".
+  const [comunicadoStatus, setComunicadoStatus] = useState(JSON.parse(sessionStorage.getItem('comunicadoStatus') || '[]'));
 
   // Guarda se o quiz está aberto ou fechado. Se estiver fechado, não renderiza o QuizCard.
   const [quizAberto, setQuizAberto] = useState(false);
@@ -37,6 +38,10 @@ function Comunicados() {
     // Se clicar no que já está aberto, fecha. Se não, abre o novo.
     setAbertoId(abertoId === id ? null : id);
   };
+
+  function enviarStatus(status: any) {
+    sessionStorage.setItem('comunicadoStatus', JSON.stringify(status));
+  }
 
   return (
     <div id="content">
@@ -98,7 +103,24 @@ function Comunicados() {
                   <button 
                     id="button-quiz-comunicado" 
                     style={{ backgroundColor: comunicadoStatus[index] === 'Pendente' ? 'rgba(25, 25, 25, 0.1)' : 'rgba(0, 128, 0, 0.3)' }}
-                    onClick={ () => comunicadoStatus[index] === 'Pendente' ? (setQuizAberto(true), setQuizSelector(item.id), setComunicadoStatus(prev => { const newStatus = [...prev]; newStatus[index] = "Lido"; return newStatus; })) : null }
+                    onClick={ 
+                      () => {
+                        if (comunicadoStatus[index] === 'Pendente') {
+                          setQuizAberto(true);
+                          setQuizSelector(item.id);
+                          
+                          // 1. Cria a cópia com o status atualizado na memória primeiro
+                          const novosStatus = [...comunicadoStatus];
+                          novosStatus[index] = "Lido";
+                          
+                          // 2. Atualiza o estado do React
+                          setComunicadoStatus(novosStatus);
+
+                          // 3. Passa os dados atualizados direto para a função (sem depender do estado lento)
+                          enviarStatus(novosStatus); 
+                        }
+                      }
+                    }
                   >
                     { comunicadoStatus[index] === 'Pendente' ? 'Responder Questionário' : 'Questionário Concluído' }
                   </button>

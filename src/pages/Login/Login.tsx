@@ -49,6 +49,7 @@ function Login({ onLogin }: LoginProps) {
       onLogin()
       sessionStorage.setItem("isLogged", "true")
       sessionStorage.setItem("token", usuarioValido.token)
+      sessionStorage.setItem('comunicadoStatus', JSON.stringify(["Pendente", "Pendente"]));
 
     }else {
       alert("Credencial Incorreta") 

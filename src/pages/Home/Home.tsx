@@ -1,8 +1,9 @@
 import './Home.css'
 import df from '../../assets/data-fake.json'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import PostModel from '../../components/post-model/PostModel';
+import { useNavigate } from 'react-router-dom';
 
 const EVENTOS_MOCK = [
     { id: 1, data: "2026-08-18", hora: "14:00", titulo: "Reunião de Alinhamento" },
@@ -77,6 +78,31 @@ const [texto, setTexto] = useState('')
 const quebrasDeLinha = texto.split('\n').length;
 const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
 
+// Estado para armazenar o status dos comunicados
+const [status, setStatus] = useState(JSON.parse(sessionStorage.getItem('comunicadoStatus') || '[]'))
+const [lidos, setLidos] = useState(0);
+const [pendentes, setPendentes] = useState(0);
+useEffect(() => {
+  const storedStatus = sessionStorage.getItem('comunicadoStatus');
+  if (storedStatus) {
+    setStatus(JSON.parse(storedStatus));
+  }
+
+  if(status) {
+    setLidos(0);
+    setPendentes(0);
+    status.forEach((s: string) => {
+      if(s === "Lido") {
+        setLidos(prev => prev + 1);
+      } else if(s === "Pendente") {
+        setPendentes(prev => prev + 1);
+      }
+    });
+  }
+}, []);
+
+const navigate = useNavigate();
+
   return (
     <article id="home">
       <div id="greetings">
@@ -94,7 +120,7 @@ const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
               <div id="pendentes">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F7D347"><path d="M160-160v-440h160v440H160Zm0-480v-160h160v160H160Zm240 480v-320h160v320H400Zm0-360v-160h160v160H400Zm240 360v-200h160v200H640Zm0-240v-160h160v160H640Z"/></svg>
                 <span>Comunicados Pendentes</span>
-                <span className='comunicados-num' style={{color: "#F7D347"}}>05</span>
+                <span className='comunicados-num' style={{color: "#F7D347"}}>{pendentes}</span>
               </div>
 
               <div id="line"></div>
@@ -102,11 +128,11 @@ const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
               <div id="lidos">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#0139C2"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
                 <span>Comunicados Lidos</span>
-                <span className='comunicados-num' style={{color: "#0139C2"}}>09</span>
+                <span className='comunicados-num' style={{color: "#0139C2"}}>{lidos}</span>
               </div>
             </div>
 
-            <Seta />
+            <Seta onClick={ () => navigate('/comunicados') }/>
           </div>
 
           <div id="ranking">
