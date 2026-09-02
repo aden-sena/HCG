@@ -1,0 +1,16 @@
+#quiz-container {
+    position: fixed;
+    top: 6%;
+    left: 6%;
+}
+
+@media (max-width: 1200px) {
+    #quiz-container {
+        top: 0;
+        left: 0;
+    }
+
+    #pontuacao-badge {
+        margin-right: 2rem;
+    }
+}

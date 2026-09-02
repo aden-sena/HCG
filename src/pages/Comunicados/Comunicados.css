@@ -2,7 +2,12 @@
     margin: 1rem 20vw;
 }
 
-
+#button-quiz-comunicado {
+    border: none;
+    margin-top: 2rem;
+    padding: .5rem;
+    width: 100%;
+}
 
 @media (max-width: 1200px) {
     #content {

@@ -8,7 +8,7 @@
 }
 
 #bom-trabalho{
-    background-image: url("../../../public/welcome.png");
+    background-image: url("/welcome.png");
     background-repeat: no-repeat;
     background-size: 58vw 45vh;
     display: flex;

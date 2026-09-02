@@ -1,28 +1,37 @@
 import { useState } from 'react';
 import './Comunicados.css'
+import QuizCard from '../../components/quiz-card/QuizCard';
 
 const comunicados = [
   {
     id: 1,
+    nome: "Nova Política de Home Office",
+    data: "28/08/2026",
+    tipo: "RH",
+    status: "Pendente",
+    texto: "Atualizamos as diretrizes para o trabalho remoto. Por favor, acessem a intranet para assinar o novo termo aditivo até sexta-feira."
+  },
+  {
+    id: 2,
     nome: "Manutenção do Sistema",
     data: "01/09/2026",
     tipo: "TI",
     status: "Pendente",
     texto: "O sistema passará por uma manutenção preventiva hoje às 22h. O serviço poderá ficar instável por até 30 minutos."
-  },
-  {
-    id: 2,
-    nome: "Nova Política de Home Office",
-    data: "28/08/2026",
-    tipo: "RH",
-    status: "Lido",
-    texto: "Atualizamos as diretrizes para o trabalho remoto. Por favor, acessem a intranet para assinar o novo termo aditivo até sexta-feira."
   }
 ];
 
 function Comunicados() {
   // Guarda o ID da linha que está aberta. Se for null, todas estão fechadas.
   const [abertoId, setAbertoId] = useState(null);
+
+  const [comunicadoStatus, setComunicadoStatus] = useState(comunicados.map(item => item.status));
+
+  // Guarda se o quiz está aberto ou fechado. Se estiver fechado, não renderiza o QuizCard.
+  const [quizAberto, setQuizAberto] = useState(false);
+
+  // Guarda qual quiz está selecionado. Se for null, nenhum quiz está selecionado.
+  const [quizSelector, setQuizSelector] = useState(0);
 
   const toggleComunicado = (id: any) => {
     // Se clicar no que já está aberto, fecha. Se não, abre o novo.
@@ -41,7 +50,7 @@ function Comunicados() {
         </div>
 
         {/* Lista de Itens */}
-        {comunicados.map((item: any) => {
+        {comunicados.map((item, index: any) => {
           const estaAberto = abertoId === item.id;
           return (
             <div key={item.id} className="border-start border-end border-bottom m-0 border-top m-0">
@@ -73,8 +82,8 @@ function Comunicados() {
 
                 {/* Status - Centralizado embaixo no mobile */}
                 <div className="col-12 col-md-2 text-center text-md-start mt-2 mt-md-0">
-                  <span className={`badge w-100 w-md-auto ${item.status === 'Pendente' ? 'bg-danger' : 'bg-success'}`}>
-                    {item.status}
+                  <span className={`badge w-100 w-md-auto ${comunicadoStatus[index] === 'Pendente' ? 'bg-danger' : 'bg-success'}`}>
+                    {comunicadoStatus[index]}
                   </span>
                 </div>
               </div>
@@ -86,12 +95,21 @@ function Comunicados() {
                   <p className="mb-0 text-secondary" style={{ whiteSpace: 'pre-line' }}>
                     {item.texto}
                   </p>
+                  <button 
+                    id="button-quiz-comunicado" 
+                    style={{ backgroundColor: comunicadoStatus[index] === 'Pendente' ? 'rgba(25, 25, 25, 0.1)' : 'rgba(0, 128, 0, 0.3)' }}
+                    onClick={ () => comunicadoStatus[index] === 'Pendente' ? (setQuizAberto(true), setQuizSelector(item.id), setComunicadoStatus(prev => { const newStatus = [...prev]; newStatus[index] = "Lido"; return newStatus; })) : null }
+                  >
+                    { comunicadoStatus[index] === 'Pendente' ? 'Responder Questionário' : 'Questionário Concluído' }
+                  </button>
                 </div>
               )}
             </div>
           );
         })}
       </div>
+
+      {quizAberto && <QuizCard id={quizSelector} onClose={() => setQuizAberto(false)} />}
     </div>
 
   )

@@ -10,8 +10,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
     { path: '/', label: 'Página Inicial' },
     { path: '/comunicados', label: 'Comunicados' },
-    { path: '/ranking', label: 'Ranking' },
-    { path: '/quiz', label: 'Quiz' }
+    { path: '/ranking', label: 'Ranking' }
 ]
 
 function Menu() {
@@ -22,7 +21,7 @@ function Menu() {
 
     const [topIndicator, setTopIndicator] = useState("0px")
     const handleIndicatorPosition = (position: number) => {
-        setTopIndicator(`${position * 54}px`)
+        setTopIndicator(`${position * 60}px`)
     }
 
     return (
