@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './Menu.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface MenuItem {
     path: string
@@ -20,9 +20,23 @@ function Menu() {
     }
 
     const [topIndicator, setTopIndicator] = useState("0px")
-    const handleIndicatorPosition = (position: number) => {
-        setTopIndicator(`${position * 60}px`)
-    }
+
+    // Atualiza a posição do indicador no /comunicados quando a página é carregada
+    const location = useLocation();
+
+    useEffect(() => {
+        // 1. Encontra o índice do item do menu que corresponde ao path atual
+        const activeIndex = menuItems.findIndex(item => item.path === location.pathname);
+
+        // 2. Se encontrar a rota (index diferente de -1)
+        if (activeIndex !== -1) {
+            const itemHeight = 60; // Altura (em pixels) de cada item do menu
+            
+            // 3. Calcula a posição baseado no índice (Ex: index 1 * 60px = 60px)
+            setTopIndicator(`${activeIndex * itemHeight}px`);
+        }
+    }, [location.pathname])
+        
 
     return (
         <>
@@ -38,7 +52,6 @@ function Menu() {
                             key={index}
                             to={item.path} 
                             className={"menu-item"}
-                            onClick={() => handleIndicatorPosition(index)}
                         >
                             <li>{item.label}</li>
                         </NavLink>
