@@ -25,6 +25,58 @@
             "pontuacao": 1200,
             "xp": 200,
             "tipo": "admin"
+        },
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwibmFtZSI6IlVzdcOhcmlvIDMiLCJpYXQiOjE3NTE1Mjk2MDB9.3xPyZ9tW4n_example_sig_user3",
+            "matricula": "0003",
+            "nome": "Mariana Costa",
+            "email": "mariana.costa@example.com",
+            "senha": "1234",
+            "foto": "users_photo_cover/Mariana Costa.jpeg",
+            "cargo": "Desenvolvedora Full-Stack",
+            "setor": "Tecnologia da Informação",
+            "pontuacao": 850,
+            "xp": 180,
+            "tipo": "user"
+        },
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwibmFtZSI6IlVzdcOhcmlvIDQiLCJpYXQiOjE3NTE1Mjk2MDB9.5vTrK2mQ1p_example_sig_user4",
+            "matricula": "0004",
+            "nome": "Ricardo Almeida",
+            "email": "ricardo.almeida@example.com",
+            "senha": "1234",
+            "foto": "users_photo_cover/Ricardo Almeida.jpeg",
+            "cargo": "Analista de Departamento Pessoal",
+            "setor": "Recursos Humanos",
+            "pontuacao": 310,
+            "xp": 90,
+            "tipo": "user"
+        },
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1IiwibmFtZSI6IlVzdcOhcmlvIDUiLCJpYXQiOjE3NTE1Mjk2MDB9.9pLmK4wR7b_example_sig_user5",
+            "matricula": "0005",
+            "nome": "Amanda Souza",
+            "email": "amanda.souza@example.com",
+            "senha": "1234",
+            "foto": "users_photo_cover/Amanda Souza.jpeg",
+            "cargo": "Diretora de Operações",
+            "setor": "Diretoria",
+            "pontuacao": 2100,
+            "xp": 350,
+            "tipo": "admin"
+        },
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwibmFtZSI6IlVzdcOhcmlvIDYiLCJpYXQiOjE3NTE1Mjk2MDB9.2bFcJ8tX3s_example_sig_user6",
+            "matricula": "0006",
+            "nome": "Thiago Martins",
+            "email": "thiago.martins@example.com",
+            "senha": "1234",
+            "foto": "users_photo_cover/Thiago Martins.jpeg",
+            "cargo": "Designer de Interface (UI/UX)",
+            "setor": "Marketing",
+            "pontuacao": 620,
+            "xp": 140,
+            "tipo": "user"
         }
     ]
 }

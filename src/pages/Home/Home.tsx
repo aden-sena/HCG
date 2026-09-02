@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import PostModel from '../../components/post-model/PostModel';
 import { useNavigate } from 'react-router-dom';
+import { playersOrdenados } from '../Ranking/Ranking';
 
 const EVENTOS_MOCK = [
     { id: 1, data: "2026-08-18", hora: "14:00", titulo: "Reunião de Alinhamento" },
@@ -143,11 +144,11 @@ const navigate = useNavigate();
 
               <div>
                 <span>Sua Posição</span>
-                <span style={{color: "#0139C2", fontSize: "20pt", fontWeight: "bold"}}>#02</span>
+                <span style={{color: "#0139C2", fontSize: "20pt", fontWeight: "bold"}}>#{ playersOrdenados.findIndex((user) => user.nome === validarToken?.nome) + 1 }</span>
               </div>
             </div>
 
-            <Seta/>
+            <Seta onClick={ () => navigate('/ranking') }/>
           </div>
         </div>
 

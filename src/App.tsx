@@ -7,6 +7,7 @@ import Ranking from './pages/Ranking/Ranking'
 import Login from './pages/Login/Login'
 import { useState } from 'react'
 import Header from './components/header/Header'
+import ScrollToTop from './components/scroll-to-top/ScrollToTop'
 
 function App() {
   const [isLogged, setIsLogged] = useState(false)
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
       <HashRouter>
+        <ScrollToTop />
         { autenticate ? <Menu /> : "" }
         { autenticate ? <Header onLogout={handleLogout}/> : "" }
 

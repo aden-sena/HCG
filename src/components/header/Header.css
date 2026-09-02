@@ -70,11 +70,6 @@
     color:rgba(255, 255, 255, 0.7);
 }
 
-#sino {
-    position: absolute;
-    right: 18rem;
-}
-
 #logo-cover {
     width: 150px;
     height: 90px;
@@ -104,10 +99,6 @@
     #user-photo {
         width: 40px;
         height: 40px;
-    }
-    
-    #sino {
-        right: 7rem;
     }
 
     #dropdownUserInfo {
