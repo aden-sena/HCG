@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import './Menu.css'
 import { useEffect, useState } from 'react'
+import { useSwipeable } from 'react-swipeable'
 
 interface MenuItem {
     path: string
@@ -18,6 +19,19 @@ function Menu() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }
+
+    const handleSwipe = useSwipeable({
+        onSwipedLeft: () => setIsMenuOpen(false),
+        onSwipedRight: () => setIsMenuOpen(true)
+    })
+
+    useEffect(() => {
+        // Passa a janela global (document) para a referência do useSwipeable
+        handleSwipe.ref(document.body);
+        
+        // Limpa os ouvintes de evento quando o componente for desmontado
+        return () => handleSwipe.ref(null);
+    }, [handleSwipe]);
 
     const [topIndicator, setTopIndicator] = useState("0px")
 
@@ -64,6 +78,8 @@ function Menu() {
                     ></div>
                 </ul>
             </nav>
+
+            { window.innerWidth <= 1200 && isMenuOpen ? <div id="menu-void" onClick={ () => setIsMenuOpen(false) }></div> : "" }
         </>
     )
 }
