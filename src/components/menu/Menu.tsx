@@ -79,7 +79,7 @@ function Menu() {
                 </ul>
             </nav>
 
-            { window.innerWidth <= 1200 && isMenuOpen ? <div id="menu-void" onClick={ () => setIsMenuOpen(false) }></div> : "" }
+            <div id="menu-void" className={isMenuOpen ? "visible" : "hidden"} onClick={ () => setIsMenuOpen(false) }></div>
         </>
     )
 }

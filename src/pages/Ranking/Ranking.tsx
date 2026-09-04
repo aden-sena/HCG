@@ -28,7 +28,7 @@ function Ranking() {
 
       <div id="classificacao">
         { playersOrdenados.map((p, index) => (
-          <div className="player-card">
+          <div className="player-card" key={index}>
             <span>{ index + 1}</span>
             <img src={ p.photo } />
             <span>{ p.nome }</span>

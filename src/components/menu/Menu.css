@@ -70,11 +70,26 @@
 #menu-void {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
+    bottom: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 2; /* Fica atrás da sidebar (5) e na frente do conteúdo */
+    
+    /* Escondido por padrão usando opacidade e visibilidade */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Quando estiver ativo (Dispositivos Grandes) */
+#menu-void.visible {
+    /* No desktop ele continua não aparecendo se você preferir esconder no notebook */
+    opacity: 0;
+    visibility: hidden;
 }
 
 
@@ -88,6 +103,13 @@
 
     #menu-icon {
         top: 2rem;
+    }
+
+    #menu-void.visible {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important; /* Torna a tela clicável para fechar o menu */
     }
 }
 
