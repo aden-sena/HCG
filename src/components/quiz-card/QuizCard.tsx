@@ -15,22 +15,39 @@ const perguntas = [
         ]
     },
     {
-    id: 2,
-    perguntas: [
-        {
-            id: 1,
-            enunciado: "Por quanto tempo o sistema poderá ficar instável durante a manutenção preventiva?",
-            opcoes: ["Até 15 minutos", "Até 30 minutos", "Até 1 hora", "Até 2 horas"],
-            correta: "Até 30 minutos"
-        },
-        {
-            id: 2,
-            enunciado: "Qual será o horário da manutenção preventiva do sistema?",
-            opcoes: ["22h", "23h", "00h", "01h"],
-            correta: "22h"
-        }
-    ]
-  }
+        id: 2,
+        perguntas: [
+            {
+                id: 1,
+                enunciado: "Por quanto tempo o sistema poderá ficar instável durante a manutenção preventiva?",
+                opcoes: ["Até 15 minutos", "Até 30 minutos", "Até 1 hora", "Até 2 horas"],
+                correta: "Até 30 minutos"
+            },
+            {
+                id: 2,
+                enunciado: "Qual será o horário da manutenção preventiva do sistema?",
+                opcoes: ["22h", "23h", "00h", "01h"],
+                correta: "22h"
+            }
+        ]
+  },
+  {
+        id: 3,
+        perguntas: [
+            {
+                id: 1,
+                enunciado: "Onde o colaborador deve verificar os planos disponíveis do Gympass?",
+                opcoes: ["No e-mail corporativo", "No portal do colaborador", "Direto no aplicativo do Gympass", "No guichê do RH"],
+                correta: "No portal do colaborador"
+            },
+            {
+                id: 2,
+                enunciado: "Quem além do colaborador pode usufruir dos planos do Gympass segundo o comunicado?",
+                opcoes: ["Apenas o colaborador", "Seus dependentes", "Amigos próximos", "Qualquer familiar, sem restrição"],
+                correta: "Seus dependentes"
+            }
+        ]
+    }
 ]
 
 interface QuizCardProps {
