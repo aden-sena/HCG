@@ -1,10 +1,17 @@
 import './Home.css'
 import df from '../../assets/data-fake.json'
-import { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
-import PostModel from '../../components/post-model/PostModel';
-import { useNavigate } from 'react-router-dom';
-import { playersOrdenados } from '../Ranking/Ranking';
+import { useEffect, useState } from 'react'
+import Calendar from 'react-calendar'
+import PostModel from '../../components/post-model/PostModel'
+import { useNavigate } from 'react-router-dom'
+import { playersOrdenados } from '../Ranking/Ranking'
+import { motion } from 'framer-motion'
+
+const pageVariants = {
+  initial: { opacity: 0, x: -20 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 1, x: 20 },
+}
 
 const EVENTOS_MOCK = [
     { id: 1, data: "2026-08-18", hora: "14:00", titulo: "Reunião de Alinhamento" },
@@ -69,149 +76,172 @@ function Home() {
   );
 
   const lidarComMudancaData = (valor: any) => {
-  if (valor instanceof Date) {
-    setDataSelecionada(valor);
-  }
-}
-
-const [texto, setTexto] = useState('')
-// Conta quantas quebras de linha existem e define as rows (mínimo 1, máximo 5)
-const quebrasDeLinha = texto.split('\n').length;
-const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
-
-// Estado para armazenar o status dos comunicados
-const [status, setStatus] = useState(JSON.parse(sessionStorage.getItem('comunicadoStatus') || '[]'))
-const [lidos, setLidos] = useState(0);
-const [pendentes, setPendentes] = useState(0);
-useEffect(() => {
-  const storedStatus = sessionStorage.getItem('comunicadoStatus');
-  if (storedStatus) {
-    setStatus(JSON.parse(storedStatus));
+    if (valor instanceof Date) {
+      setDataSelecionada(valor);
+    }
   }
 
-  if(status) {
-    setLidos(0);
-    setPendentes(0);
-    status.forEach((s: string) => {
-      if(s === "Lido") {
-        setLidos(prev => prev + 1);
-      } else if(s === "Pendente") {
-        setPendentes(prev => prev + 1);
-      }
-    });
-  }
-}, []);
+  const [texto, setTexto] = useState('')
+  // Conta quantas quebras de linha existem e define as rows (mínimo 1, máximo 5)
+  const quebrasDeLinha = texto.split('\n').length;
+  const numRows = Math.min(Math.max(quebrasDeLinha, 1), 5);
 
-const navigate = useNavigate();
+  // Estado para armazenar o status dos comunicados
+  const [status, setStatus] = useState(JSON.parse(sessionStorage.getItem('comunicadoStatus') || '[]'))
+  const [lidos, setLidos] = useState(0);
+  const [pendentes, setPendentes] = useState(0);
+  useEffect(() => {
+    const storedStatus = sessionStorage.getItem('comunicadoStatus');
+    if (storedStatus) {
+      setStatus(JSON.parse(storedStatus));
+    }
+
+    if(status) {
+      setLidos(0);
+      setPendentes(0);
+      status.forEach((s: string) => {
+        if(s === "Lido") {
+          setLidos(prev => prev + 1);
+        } else if(s === "Pendente") {
+          setPendentes(prev => prev + 1);
+        }
+      });
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // 1. Verifica se a variável existe e é "true"
+    if (sessionStorage.getItem('veioDoLogin') === 'true') {
+      
+      // 2. Inicia o temporizador de 1 segundo
+      const timer = setTimeout(() => {
+        sessionStorage.setItem('veioDoLogin', 'false');
+      }, 500);
+
+      // 3. LIMPEZA (Muito importante no React!): 
+      // Se o usuário sair da Home antes de 1 segundo, limpa o timer para evitar bugs de memória.
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
-    <article id="home">
-      <div id="greetings">
-        <span>{greeting}</span>
-        <div id="bom-trabalho">
-          <span>Bom trabalho!</span>
+    <motion.div
+      variants={pageVariants}
+      initial={sessionStorage.getItem('veioDoLogin') === "true" ? "initial" : "animate"}
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.5 }}
+    >
+      <article id="home">
+        <div id="greetings">
+          <span>{greeting}</span>
+          <div id="bom-trabalho">
+            <span>Bom trabalho!</span>
+          </div>
         </div>
-      </div>
 
-      <div id="comms-ranking-agenda-box">
-        <div id="left">  
-          <div id="comunicados">
-            <span>Comunicados</span>
-            <div>
-              <div id="pendentes">
-                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F7D347"><path d="M160-160v-440h160v440H160Zm0-480v-160h160v160H160Zm240 480v-320h160v320H400Zm0-360v-160h160v160H400Zm240 360v-200h160v200H640Zm0-240v-160h160v160H640Z"/></svg>
-                <span>Comunicados Pendentes</span>
-                <span className='comunicados-num' style={{color: "#F7D347"}}>{pendentes}</span>
+        <div id="comms-ranking-agenda-box">
+          <div id="left">  
+            <div id="comunicados">
+              <span>Comunicados</span>
+              <div>
+                <div id="pendentes">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F7D347"><path d="M160-160v-440h160v440H160Zm0-480v-160h160v160H160Zm240 480v-320h160v320H400Zm0-360v-160h160v160H400Zm240 360v-200h160v200H640Zm0-240v-160h160v160H640Z"/></svg>
+                  <span>Comunicados Pendentes</span>
+                  <span className='comunicados-num' style={{color: "#F7D347"}}>{pendentes}</span>
+                </div>
+
+                <div id="line"></div>
+
+                <div id="lidos">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#0139C2"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+                  <span>Comunicados Lidos</span>
+                  <span className='comunicados-num' style={{color: "#0139C2"}}>{lidos}</span>
+                </div>
               </div>
 
-              <div id="line"></div>
-
-              <div id="lidos">
-                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#0139C2"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
-                <span>Comunicados Lidos</span>
-                <span className='comunicados-num' style={{color: "#0139C2"}}>{lidos}</span>
-              </div>
+              <Seta onClick={ () => navigate('/comunicados') }/>
             </div>
 
-            <Seta onClick={ () => navigate('/comunicados') }/>
-          </div>
-
-          <div id="ranking">
-            <span>Ranking</span>
-
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#0139C2"><path d="M160-200h160v-320H160v320Zm240 0h160v-560H400v560Zm240 0h160v-240H640v240ZM80-120v-480h240v-240h320v320h240v400H80Z"/></svg>
+            <div id="ranking">
+              <span>Ranking</span>
 
               <div>
-                <span>Sua Posição</span>
-                <span style={{color: "#0139C2", fontSize: "20pt", fontWeight: "bold"}}>#{ playersOrdenados.findIndex((user) => user.nome === validarToken?.nome) + 1 }</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#0139C2"><path d="M160-200h160v-320H160v320Zm240 0h160v-560H400v560Zm240 0h160v-240H640v240ZM80-120v-480h240v-240h320v320h240v400H80Z"/></svg>
+
+                <div>
+                  <span>Sua Posição</span>
+                  <span style={{color: "#0139C2", fontSize: "20pt", fontWeight: "bold"}}>#{ playersOrdenados.findIndex((user) => user.nome === validarToken?.nome) + 1 }</span>
+                </div>
+              </div>
+
+              <Seta onClick={ () => navigate('/ranking') }/>
+            </div>
+          </div>
+
+          <div id="right">
+              <div id="agenda" className="custom-calendar-container">
+                <Calendar 
+                  calendarType="gregory"
+                  onChange={lidarComMudancaData} 
+                  value={dataSelecionada}
+                  prev2Label={null}
+                  next2Label={null} 
+                />
+
+                <div id="eventos">
+                  <h3>Eventos para {dataSelecionada.toLocaleDateString("pt-BR")}:</h3>
+                  
+                  {eventosDoDia.length > 0 ? (
+                    <ul>
+                      {eventosDoDia.map((evento) => (
+                        <li key={evento.id} >
+                          <strong>{evento.hora}</strong> - {evento.titulo}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ color: "#666", fontSize: "14px", padding: "1rem" }}>Nenhum evento para este dia.</p>
+                  )}
+
+                  <button id="add-evento">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#fff"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                  </button>
+                </div>
               </div>
             </div>
+          </div>
 
-            <Seta onClick={ () => navigate('/ranking') }/>
+        <div id='make-post'>
+          <textarea 
+            rows={numRows}
+            placeholder='Criar Post...'
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            id="textarea-make-post">
+          </textarea>
+          <hr />
+          <div id='post-types'>
+            {PostButtons.map((item, index) => (
+              <button key={index}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={item.fill}><path d={item.path}/></svg>
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div id="right">
-            <div id="agenda" className="custom-calendar-container">
-              <Calendar 
-                calendarType="gregory"
-                onChange={lidarComMudancaData} 
-                value={dataSelecionada}
-                prev2Label={null}
-                next2Label={null} 
-              />
-
-              <div id="eventos">
-                <h3>Eventos para {dataSelecionada.toLocaleDateString("pt-BR")}:</h3>
-                
-                {eventosDoDia.length > 0 ? (
-                  <ul>
-                    {eventosDoDia.map((evento) => (
-                      <li key={evento.id} >
-                        <strong>{evento.hora}</strong> - {evento.titulo}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p style={{ color: "#666", fontSize: "14px", padding: "1rem" }}>Nenhum evento para este dia.</p>
-                )}
-
-                <button id="add-evento">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#fff"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <div id='make-post'>
-        <textarea 
-          rows={numRows}
-          placeholder='Criar Post...'
-          value={texto}
-          onChange={(e) => setTexto(e.target.value)}
-          id="textarea-make-post">
-        </textarea>
-        <hr />
-        <div id='post-types'>
-          {PostButtons.map((item, index) => (
-            <button key={index}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={item.fill}><path d={item.path}/></svg>
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <PostModel 
-        nome="Beatriz Cavalcanti"
-        cargo="Gerente de Projetos"
-        conteudo={`Design is not just what it looks and feels like. Design is how it work.`}
-        profilePhoto="users_photo_cover/Beatriz Cavalcanti.jpeg"
-        image="https://dheegital.com/wp-content/uploads/2019/03/post-os-8-tipos-de-design-grafico.jpg"
-      />
-    </article>
+        <PostModel 
+          nome="Beatriz Cavalcanti"
+          cargo="Gerente de Projetos"
+          conteudo={`Design is not just what it looks and feels like. Design is how it work.`}
+          profilePhoto="users_photo_cover/Beatriz Cavalcanti.jpeg"
+          image="https://dheegital.com/wp-content/uploads/2019/03/post-os-8-tipos-de-design-grafico.jpg"
+        />
+      </article>
+    </motion.div>
   )
 }
 

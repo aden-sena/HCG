@@ -47,9 +47,10 @@ function Login({ onLogin }: LoginProps) {
 
     if(usuarioValido) {
       onLogin()
-      sessionStorage.setItem("isLogged", "true")
-      sessionStorage.setItem("token", usuarioValido.token)
+      sessionStorage.setItem('isLogged', "true")
+      sessionStorage.setItem('token', usuarioValido.token)
       sessionStorage.setItem('comunicadoStatus', JSON.stringify(["Pendente", "Pendente", "Pendente"]))
+      sessionStorage.setItem('veioDoLogin', "true")
     }else {
       alert("Credencial Incorreta") 
     }
